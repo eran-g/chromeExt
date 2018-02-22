@@ -1,0 +1,19 @@
+{
+  "name": "chromeext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eran-g/chromeExt.git"
+  },
+  "author": "eg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eran-g/chromeExt/issues"
+  },
+  "homepage": "https://github.com/eran-g/chromeExt#readme"
+}
