@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack -w"
   },
   "repository": {
     "type": "git",
@@ -17,12 +18,18 @@
   },
   "homepage": "https://github.com/eran-g/chromeExt#readme",
   "dependencies": {
-    "typescript": "^2.7.2"
+    "@types/chrome": "0.0.59",
+    "typescript": "^2.5.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.104",
+    "@types/node": "^7.0.42",
+    "copy-webpack-plugin": "^4.4.2",
+    "file-loader": "^1.1.9",
     "html-webpack-plugin": "^2.30.1",
     "ts-loader": "^3.5.0",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.2",
+    "url-loader": "^0.6.2"
   }
 }
