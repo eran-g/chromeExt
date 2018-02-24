@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/eran-g/chromeExt/issues"
   },
-  "homepage": "https://github.com/eran-g/chromeExt#readme"
+  "homepage": "https://github.com/eran-g/chromeExt#readme",
+  "dependencies": {
+    "typescript": "^2.7.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.104",
+    "html-webpack-plugin": "^2.30.1",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.7.2"
+  }
 }
