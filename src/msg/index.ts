@@ -1,9 +1,21 @@
 import { params } from './const'
 import { sendMsg } from './msgUtils'
 
-document.addEventListener('DOMContentLoaded', async () => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    switch (message.msg) {
+        case 'handShakeFromBg':
+            sendResponse({
+                msg: 'handShake resp From pop'
+            })
+            break
+        case 'requestFailed':
+            // change icon and alarm
+            // sendMsg response: clear interval
+            break
+    }
+})
 
-    await listen()
+document.addEventListener('DOMContentLoaded', async () => {
 
     const handShakeresp = await sendMsg({
         key: params.handShake.key
@@ -24,23 +36,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         startBtn['disabled'] = false
     }
 })
-
-async function listen() {
-    return new Promise((resolve, reject) => {
-        chrome.runtime.onMessage.addListener((message,sender,sendResponse) => {
-            switch (message.msg) {
-                case 'handShakeFromBg':
-                    sendResponse({
-                        msg: 'handShake resp From pop'
-                    })
-                    break
-                case 'requestFailed':
-                    // change icon and alarm
-                    // sendMsg response: clear interval
-                    break
-            }
-        })
-
-        resolve()
-    })
-}
