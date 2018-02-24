@@ -1,7 +1,20 @@
 let icon
 let interval
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+        await listen()
+
+        // test messages and response
+        const handShakeresp = await popJsSendMsg({
+            msg: 'handShake'
+        })
+        console.log('--->handShakeresp:', JSON.stringify(handShakeresp))
+
+        const testMsgResp = await popJsSendMsg({
+            msg: 'testMsg'
+        })
+        console.log('--->testMsgResp:', JSON.stringify(testMsgResp))
 
         // init UI elements event listeners
         const startBtn = document.getElementById('start')
@@ -31,32 +44,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-
-chrome.runtime.onMessage.addListener((message,sender,sendResponse) => {
-    switch (message.msg) {
-        case 'handShakeFromBg':
-            sendResponse({
-                msg: 'handShake resp From pop'
-            })
-            break
-        case 'requestFailed':
-            // change icon and alarm
-            // send response: clear interval
-            break
-    }
-})
-console.log('--->popJsListener listening')
-// test messages and response
-const handShakeresp = popJsSendMsg({
-    msg: 'handShake'
-})
-console.log('--->handShakeresp:', JSON.stringify(handShakeresp))
-
-const testMsgResp = popJsSendMsg({
-    msg: 'testMsg'
-})
-console.log('--->testMsgResp:', JSON.stringify(testMsgResp))
-
+async function listen() {
+    return new Promise((resolve, reject) => {
+        chrome.runtime.onMessage.addListener((message,sender,sendResponse) => {
+            switch (message.msg) {
+                case 'handShakeFromBg':
+                    sendResponse({
+                        msg: 'handShake resp From pop'
+                    })
+                    break
+                case 'requestFailed':
+                    // change icon and alarm
+                    // send response: clear interval
+                    break
+            }
+        })
+        console.log('--->popJsListener listening')
+        resolve()
+    })
+}
 
 async function popJsSendMsg(msg) {
     return new Promise((resolve, reject) => {
